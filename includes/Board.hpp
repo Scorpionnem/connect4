@@ -6,7 +6,7 @@
 /*   By: mbatty <mbatty@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 09:02:49 by mbatty            #+#    #+#             */
-/*   Updated: 2025/11/06 13:19:30 by mbatty           ###   ########.fr       */
+/*   Updated: 2025/11/06 13:27:15 by mbatty           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,11 @@ class	Board
 		{
 			reset();
 		}
+		Board(uint64_t p1, uint64_t p2)
+		{
+			_board[Board::PLAYER1] = p1;
+			_board[Board::PLAYER2] = p2;
+		}
 		~Board(){}
 
 		void	reset()
@@ -77,6 +82,7 @@ class	Board
 
 		bool	checkWin(Player player)
 		{
+			bool	ret = false;
 			int	color = 0x000000FF;
 			if (player ==  Player::PLAYER1)
 				color = 0x00FF0000;
@@ -90,7 +96,7 @@ class	Board
 						window.putSquare((x + 1) * Window::SQUARE_SIZE, (y + 0) * Window::SQUARE_SIZE, color);
 						window.putSquare((x + 2) * Window::SQUARE_SIZE, (y + 0) * Window::SQUARE_SIZE, color);
 						window.putSquare((x + 3) * Window::SQUARE_SIZE, (y + 0) * Window::SQUARE_SIZE, color);
-						return (true);
+						ret = true;
 					}
 					if (get(player, x, y) && get(player, x, y + 1) && get(player, x, y + 2) && get(player, x, y + 3))
 					{
@@ -98,7 +104,7 @@ class	Board
 						window.putSquare((x + 0) * Window::SQUARE_SIZE, (y + 1) * Window::SQUARE_SIZE, color);
 						window.putSquare((x + 0) * Window::SQUARE_SIZE, (y + 2) * Window::SQUARE_SIZE, color);
 						window.putSquare((x + 0) * Window::SQUARE_SIZE, (y + 3) * Window::SQUARE_SIZE, color);
-						return (true);
+						ret = true;
 					}
 					if (get(player, x, y) && get(player, x + 1, y + 1) && get(player, x + 2, y + 2) && get(player, x + 3, y + 3))
 					{
@@ -106,7 +112,7 @@ class	Board
 						window.putSquare((x + 1) * Window::SQUARE_SIZE, (y + 1) * Window::SQUARE_SIZE, color);
 						window.putSquare((x + 2) * Window::SQUARE_SIZE, (y + 2) * Window::SQUARE_SIZE, color);
 						window.putSquare((x + 3) * Window::SQUARE_SIZE, (y + 3) * Window::SQUARE_SIZE, color);
-						return (true);
+						ret = true;
 					}
 					if (get(player, x, y) && get(player, x - 1, y - 1) && get(player, x - 2, y - 2) && get(player, x - 3, y - 3))
 					{
@@ -114,7 +120,7 @@ class	Board
 						window.putSquare((x - 1) * Window::SQUARE_SIZE, (y - 1) * Window::SQUARE_SIZE, color);
 						window.putSquare((x - 2) * Window::SQUARE_SIZE, (y - 2) * Window::SQUARE_SIZE, color);
 						window.putSquare((x - 3) * Window::SQUARE_SIZE, (y - 3) * Window::SQUARE_SIZE, color);
-						return (true);
+						ret = true;
 					}
 					if (get(player, x, y) && get(player, x - 1, y + 1) && get(player, x - 2, y + 2) && get(player, x - 3, y + 3))
 					{
@@ -122,7 +128,7 @@ class	Board
 						window.putSquare((x - 1) * Window::SQUARE_SIZE, (y + 1) * Window::SQUARE_SIZE, color);
 						window.putSquare((x - 2) * Window::SQUARE_SIZE, (y + 2) * Window::SQUARE_SIZE, color);
 						window.putSquare((x - 3) * Window::SQUARE_SIZE, (y + 3) * Window::SQUARE_SIZE, color);
-						return (true);
+						ret = true;
 					}
 					if (get(player, x, y) && get(player, x + 1, y - 1) && get(player, x + 2, y - 2) && get(player, x + 3, y - 3))
 					{
@@ -130,14 +136,14 @@ class	Board
 						window.putSquare((x + 1) * Window::SQUARE_SIZE, (y - 1) * Window::SQUARE_SIZE, color);
 						window.putSquare((x + 2) * Window::SQUARE_SIZE, (y - 2) * Window::SQUARE_SIZE, color);
 						window.putSquare((x + 3) * Window::SQUARE_SIZE, (y - 3) * Window::SQUARE_SIZE, color);
-						return (true);
+						ret = true;
 					}
 				}
 			}
-			return (false);
+			return (ret);
 		}
 
-		static bool	valid(int x, int y)
+		static bool	valid(uint8_t x, uint8_t y)
 		{
 			return (x >= 0 && x < Board::WIDTH && y >= 0 && y < Board::HEIGHT);
 		}
