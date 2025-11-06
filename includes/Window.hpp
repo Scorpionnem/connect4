@@ -6,7 +6,7 @@
 /*   By: mbatty <mbatty@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 10:30:27 by mbatty            #+#    #+#             */
-/*   Updated: 2025/11/06 11:40:43 by mbatty           ###   ########.fr       */
+/*   Updated: 2025/11/06 13:14:10 by mbatty           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ class	Window
 			int		height;
 		};
 
-		constexpr static int	WIDTH = 350;
-		constexpr static int	HEIGHT = 300;
+		constexpr static int	WIDTH = 350 * 2;
+		constexpr static int	HEIGHT = 300 * 2;
 		constexpr static int	SQUARE_SIZE = WIDTH / 7;
 		constexpr static const char	*NAME = "connect4";
 	public:

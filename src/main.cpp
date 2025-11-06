@@ -6,7 +6,7 @@
 /*   By: mbatty <mbatty@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 08:55:37 by mbatty            #+#    #+#             */
-/*   Updated: 2025/11/06 11:53:46 by mbatty           ###   ########.fr       */
+/*   Updated: 2025/11/06 12:10:03 by mbatty           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,12 @@ void	Game::loop()
 {
 	window.resetImg();
 	_board.print();
+
+	if (_board.checkWin(Board::Player::PLAYER1) || _board.checkWin(Board::Player::PLAYER2))
+	{
+		window.renderImg();
+		return ;
+	}
 
 	if (_player == 0)
 	{

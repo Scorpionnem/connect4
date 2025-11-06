@@ -6,7 +6,7 @@
 /*   By: mbatty <mbatty@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 08:57:06 by mbatty            #+#    #+#             */
-/*   Updated: 2025/11/06 11:51:50 by mbatty           ###   ########.fr       */
+/*   Updated: 2025/11/06 13:17:49 by mbatty           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,5 @@
 void	Game::run()
 {
 	_player1 = new HumanPlayer();
-	_player2 = new AIPlayer();
+	_player2 = new HumanPlayer();
 }
