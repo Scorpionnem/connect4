@@ -1,38 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Game.hpp                                           :+:      :+:    :+:   */
+/*   HumanPlayer.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbatty <mbatty@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/06 08:57:09 by mbatty            #+#    #+#             */
-/*   Updated: 2025/11/06 11:45:21 by mbatty           ###   ########.fr       */
+/*   Created: 2025/11/06 09:59:47 by mbatty            #+#    #+#             */
+/*   Updated: 2025/11/06 11:49:14 by mbatty           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GAME_HPP
-# define GAME_HPP
+#ifndef HUMANPLAYER_HPP
+# define HUMANPLAYER_HPP
 
-# include "AIPlayer.hpp"
-# include "HumanPlayer.hpp"
+# include "Player.hpp"
 # include "Board.hpp"
+# include <string>
+# include <iostream>
 
-class	Game
+# include "Window.hpp"
+extern Window window;
+
+class	HumanPlayer : public Player
 {
 	public:
-		Game(){}
-		~Game(){}
-		
-		void	run();
-		void	loop();
-	private:
-		
-		int		_action;
-		Player	*_player1;
-		Player	*_player2;
-		int	_player = 0;
+		HumanPlayer(){}
+		~HumanPlayer(){}
 
-		Board	_board;
+		int	play()
+		{
+			int	play = -1;
+
+			if (window.mouseClick)
+				play = 7 * ((float)window.mouseX / (float)Window::WIDTH);
+
+			if (!Board::valid(play, 0))
+				return (-1);
+			return (play);
+		}
 };
 
 #endif

@@ -1,19 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Game.cpp                                           :+:      :+:    :+:   */
+/*   Player.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbatty <mbatty@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/06 08:57:06 by mbatty            #+#    #+#             */
-/*   Updated: 2025/11/06 11:51:50 by mbatty           ###   ########.fr       */
+/*   Created: 2025/11/06 09:57:24 by mbatty            #+#    #+#             */
+/*   Updated: 2025/11/06 10:09:56 by mbatty           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Game.hpp"
+#ifndef PLAYER_HPP
+# define PLAYER_HPP
 
-void	Game::run()
+class	Player
 {
-	_player1 = new HumanPlayer();
-	_player2 = new AIPlayer();
-}
+	public:
+		Player(){}
+		virtual ~Player(){}
+
+		/*
+			Returns wich column the player wants to play
+		*/
+		virtual int play() = 0;
+	private:
+};
+
+#endif

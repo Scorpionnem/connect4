@@ -1,7 +1,7 @@
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -MMD -MP -g
 
-INCLUDES = -I includes/ -I minilibx-linux/
+INCLUDES = -I includes/ -I minilibx-linux/ -I includes/Players
 
 NAME = connect4
 
@@ -16,7 +16,7 @@ MLX = minilibx-linux/libmlx.a
 
 all: minilibx $(MLX) $(NAME)
 
-run:
+run: all
 	./$(NAME)
 
 re: fclean all
