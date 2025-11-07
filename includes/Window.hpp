@@ -6,7 +6,7 @@
 /*   By: mbatty <mbatty@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 10:30:27 by mbatty            #+#    #+#             */
-/*   Updated: 2025/11/06 13:14:10 by mbatty           ###   ########.fr       */
+/*   Updated: 2025/11/07 09:30:38 by mbatty           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,25 @@ class	Window
 				cur_x++;
 			}
 		}
+		void	putSquareHalf(int x, int y, int color)
+		{
+			int	cur_x;
+			int	cur_y;
+
+			cur_x = 0;
+			while (cur_x < SQUARE_SIZE)
+			{
+				cur_y = 0;
+				while (cur_y < SQUARE_SIZE)
+				{
+					if ((cur_x + x) >= 0 && (cur_x + x) < WIDTH && (cur_y + y) >= 0 && (cur_y + y) < HEIGHT)
+						if (((cur_x + x) + (cur_y + y)) % 2)
+							putPixel(cur_x + x, cur_y + y, color);
+					cur_y++;
+				}
+				cur_x++;
+			}
+		}
 		void	renderImg()
 		{
 			mlx_put_image_to_window(_mlx, _mlx_win, _img.data, 0, 0);
@@ -129,6 +148,7 @@ class	Window
 		}
 
 		void	*getMLX() {return (_mlx);}
+		void	*getWMLX() {return (_mlx_win);}
 	private:
 		void		*_mlx;
 		void		*_mlx_win;

@@ -34,13 +34,11 @@ $(OBJDIR)/%.o: %.cpp
 	@$(CXX) $(CXXFLAGS) $(INCLUDES) -c $< -o $@
 
 clean:
-	@make -C ../libft clean
 	@make -C minilibx-linux clean
 	@echo Cleaning objects
 	@rm -rf $(OBJDIR)
 
 fclean: clean
-	@make -C ../libft fclean
 	@echo Cleaning $(NAME)
 	@rm -rf $(NAME)
 

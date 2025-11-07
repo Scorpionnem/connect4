@@ -6,7 +6,7 @@
 /*   By: mbatty <mbatty@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 09:02:49 by mbatty            #+#    #+#             */
-/*   Updated: 2025/11/06 13:27:15 by mbatty           ###   ########.fr       */
+/*   Updated: 2025/11/07 10:38:20 by mbatty           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <cstdint>
 # include <iostream>
+# include <fstream>
 
 # include "Window.hpp"
 
@@ -77,6 +78,25 @@ class	Board
 					else if ((x + y) % 2)
 						window.putSquare(x * Window::SQUARE_SIZE, y * Window::SQUARE_SIZE, 0x00111111);
 				}
+			}
+		}
+		
+		void	printDebug(std::ofstream &file, int layer)
+		{
+			for (int y = 0; y < Board::HEIGHT; y++)
+			{
+				for (int i = 0; i < layer; i++)
+					file << " ";
+				for (int x = 0; x < Board::WIDTH; x++)
+				{
+					if (get(Player::PLAYER1, x, y))
+						file << "1";
+					else if (get(Player::PLAYER2, x, y))
+						file << "2";
+					else
+						file << "0";
+				}
+				file << std::endl;
 			}
 		}
 
@@ -172,6 +192,10 @@ class	Board
 			if (!valid(x, y))
 				return (0);
 			return ((_board[(int)player] & (1ULL << (x * Board::WIDTH + y))) > 0);
+		}
+		uint64_t	get(Player player)
+		{
+			return (_board[(int)player]);
 		}
 };
 
