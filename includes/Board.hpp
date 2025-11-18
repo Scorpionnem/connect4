@@ -6,7 +6,7 @@
 /*   By: mbatty <mbatty@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 09:02:49 by mbatty            #+#    #+#             */
-/*   Updated: 2025/11/07 10:38:20 by mbatty           ###   ########.fr       */
+/*   Updated: 2025/11/07 10:58:31 by mbatty           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,10 +83,9 @@ class	Board
 		
 		void	printDebug(std::ofstream &file, int layer)
 		{
+			file << "Layer: " << layer << std::endl;
 			for (int y = 0; y < Board::HEIGHT; y++)
 			{
-				for (int i = 0; i < layer; i++)
-					file << " ";
 				for (int x = 0; x < Board::WIDTH; x++)
 				{
 					if (get(Player::PLAYER1, x, y))
