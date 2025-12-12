@@ -6,7 +6,7 @@
 /*   By: mbatty <mbatty@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 09:02:49 by mbatty            #+#    #+#             */
-/*   Updated: 2025/11/07 10:58:31 by mbatty           ###   ########.fr       */
+/*   Updated: 2025/12/12 13:49:10 by mbatty           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,13 @@ class	Board
 			PLAYER2,
 		};
 
+		static constexpr uint8_t	HEIGHT = 6;
+		static constexpr uint8_t	WIDTH = 7;
 	private:
 		static constexpr uint64_t	EMPTY_BOARD = 0ULL;
 		static constexpr uint8_t	PLAYER1 = 0;
 		static constexpr uint8_t	PLAYER2 = 1;
 		static constexpr uint8_t	MAX_PLAYERS = 2;
-
-		static constexpr uint8_t	HEIGHT = 6;
-		static constexpr uint8_t	WIDTH = 7;
 
 		static constexpr const char	*RED = "\x1b[37;41m";
 		static constexpr const char	*BLUE = "\x1b[37;44m";
@@ -191,6 +190,12 @@ class	Board
 			if (!valid(x, y))
 				return (0);
 			return ((_board[(int)player] & (1ULL << (x * Board::WIDTH + y))) > 0);
+		}
+		int	get(uint8_t x, uint8_t y)
+		{
+			if (!valid(x, y))
+				return (0);
+			return (get(Board::Player::PLAYER1, x, y) || get(Board::Player::PLAYER2, x, y));
 		}
 		uint64_t	get(Player player)
 		{

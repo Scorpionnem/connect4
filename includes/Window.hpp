@@ -6,7 +6,7 @@
 /*   By: mbatty <mbatty@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 10:30:27 by mbatty            #+#    #+#             */
-/*   Updated: 2025/11/07 09:30:38 by mbatty           ###   ########.fr       */
+/*   Updated: 2025/12/12 10:23:33 by mbatty           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ extern "C"
 
 # include <exception>
 # include <stdexcept>
+
+# define ESCAPE_KEY 65307
 
 class	Window
 {
@@ -55,6 +57,13 @@ class	Window
 			win->mouseClick = button;
 			return (0);
 		}
+		static int	key_press(int button, Window *win)
+		{
+			(void)win;
+			if (button == ESCAPE_KEY)
+				closeHook();
+			return (0);
+		}
 		void	open()
 		{
 			_mlx = mlx_init();
@@ -71,6 +80,7 @@ class	Window
 			mlx_hook(_mlx_win, 17, 0, closeHook, this);
 			mlx_loop_hook(_mlx, loopHook, this);
 			mlx_mouse_hook(_mlx_win, (int (*)())mouse_press, this);
+			mlx_key_hook(_mlx_win, (int (*)())key_press, this);
 			mlx_loop(_mlx);
 		}
 		void	close()

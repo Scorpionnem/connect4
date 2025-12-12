@@ -6,7 +6,7 @@
 /*   By: mbatty <mbatty@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 09:59:47 by mbatty            #+#    #+#             */
-/*   Updated: 2025/11/06 11:49:14 by mbatty           ###   ########.fr       */
+/*   Updated: 2025/12/12 11:09:45 by mbatty           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,9 @@ class	HumanPlayer : public Player
 		HumanPlayer(){}
 		~HumanPlayer(){}
 
-		int	play()
+		int	play(Board board, Board::Player you)
 		{
+			(void)you;(void)board;
 			int	play = -1;
 
 			if (window.mouseClick)
